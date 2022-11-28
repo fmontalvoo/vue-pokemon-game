@@ -5,6 +5,12 @@
         <h2>¿Qui&eacute;n es este pok&eacute;mon?</h2>
         <PokemonPicture :pokemon-id="pokemon.id" :show-pokemon="showPokemon" />
         <PokemonOptions :pokemon-options="pokemons" @select-pokemon="checkAnswer" />
+
+        <div class="fade-in" v-show="showPokemon">
+            <h2>!Es {{ capitalizedName(pokemon.name) }}!</h2>
+            <button @click="resetGame">Jugar de nuevo</button>
+        </div>
+
     </div>
 
     <h3 v-else>
@@ -13,7 +19,7 @@
 </template>
 
 <script>
-import getPokemonOptions, { getRandomInt } from '@/utils/utils.js'
+import getPokemonOptions, { getRandomInt, capitalize } from '@/utils/utils.js'
 
 import PokemonPicture from '@/components/PokemonPicture.vue'
 import PokemonOptions from '@/components/PokemonOptions.vue'
@@ -40,8 +46,16 @@ export default {
         },
         checkAnswer(pokemonId) {
             console.log(pokemonId)
-            if (this.pokemon.id == pokemonId)
-                this.showPokemon = true
+            this.showPokemon = true
+        },
+        resetGame() {
+            this.pokemons = []
+            this.pokemon = null
+            this.showPokemon = false
+            this.getPokemos()
+        },
+        capitalizedName(str) {
+            return capitalize(str)
         }
     }
 }

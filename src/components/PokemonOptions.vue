@@ -9,6 +9,8 @@
 </template>
 
 <script>
+import { capitalize } from '@/utils/utils'
+
 export default {
     props: {
         pokemonOptions: {
@@ -18,7 +20,7 @@ export default {
     },
     methods: {
         capitalizedName(str) {
-            return str.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase())
+            return capitalize(str)
         }
     }
 }

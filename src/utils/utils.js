@@ -22,13 +22,17 @@ const getPokemonsWithNames = async (pokemonIds = []) => {
 const getPokemonOptions = async () => {
     const pokemonsList = Array.from(Array(650))
         .map((value, index) => index + 1)
-        .sort(() => getRandomInt(-2, 2))
+        .sort(() => Math.random() - 0.5)
 
     const pokemonsWithName = await getPokemonsWithNames(pokemonsList.splice(0, 4))
 
     console.table(pokemonsWithName)
 
     return pokemonsWithName
+}
+
+export const capitalize = (str = '') => {
+    return str.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase())
 }
 
 export default getPokemonOptions
