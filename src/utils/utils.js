@@ -1,9 +1,9 @@
 import getPokemon from "@/service/pokemon.service"
 
-const getRandomInt = (min = 0, max = 1) => {
+export const getRandomInt = (min = 0, max = 1) => {
     min = Math.ceil(min)
     max = Math.floor(max)
-    return Math.floor(Math.random() * (max - min) + min)
+    return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
 const getPokemonsWithNames = async (pokemonIds = []) => {
@@ -27,6 +27,8 @@ const getPokemonOptions = async () => {
     const pokemonsWithName = await getPokemonsWithNames(pokemonsList.splice(0, 4))
 
     console.table(pokemonsWithName)
+
+    return pokemonsWithName
 }
 
 export default getPokemonOptions
