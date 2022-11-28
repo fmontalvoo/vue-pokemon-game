@@ -22,7 +22,7 @@ const getPokemonsWithNames = async (pokemonIds = []) => {
 const getPokemonOptions = async () => {
     const pokemonsList = Array.from(Array(650))
         .map((value, index) => index + 1)
-        .sort(() => getRandomInt(-1, 1))
+        .sort(() => getRandomInt(-2, 2))
 
     const pokemonsWithName = await getPokemonsWithNames(pokemonsList.splice(0, 4))
 

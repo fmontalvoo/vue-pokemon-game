@@ -1,7 +1,7 @@
 <template>
     <div class="options-container">
         <ul>
-            <li v-for="pokemon of pokemonOptions" :key="pokemon.id">
+            <li v-for="pokemon of pokemonOptions" :key="pokemon.id" @click="$emit('selectPokemon', pokemon.id)">
                 {{ capitalizedName(pokemon.name) }}
             </li>
         </ul>

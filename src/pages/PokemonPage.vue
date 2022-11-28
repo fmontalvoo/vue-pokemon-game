@@ -3,8 +3,8 @@
 
     <div v-else-if="pokemon">
         <h2>¿Qui&eacute;n es este pok&eacute;mon?</h2>
-        <PokemonPicture :pokemonId="pokemon.id" :showPokemon="showPokemon" />
-        <PokemonOptions :pokemonOptions="pokemons" />
+        <PokemonPicture :pokemon-id="pokemon.id" :show-pokemon="showPokemon" />
+        <PokemonOptions :pokemon-options="pokemons" @select-pokemon="checkAnswer" />
     </div>
 
     <h3 v-else>
@@ -37,7 +37,11 @@ export default {
         async getPokemos() {
             this.pokemons = await getPokemonOptions()
             this.pokemon = this.pokemons.at(getRandomInt(0, 3))
-            console.log(this.pokemon)
+        },
+        checkAnswer(pokemonId) {
+            console.log(pokemonId)
+            if (this.pokemon.id == pokemonId)
+                this.showPokemon = true
         }
     }
 }
